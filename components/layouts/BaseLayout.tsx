@@ -2,15 +2,20 @@ import Header from "../shared/Header";
 import {ReactNode} from "react";
 
 type PropsType = {
-  children: ReactNode
+  children: ReactNode,
+  className?: string
 }
 
-const BaseLayout: React.FC<PropsType> = ({children}: PropsType) => {
+const BaseLayout: React.FC<PropsType> = ({children, className}: PropsType) => {
   return (
-    <>
-      <Header/>
-      {children}
-    </>
+    <div className="layout-container">
+      <Header />
+      <main className={`cover ${className}`}>
+        <div className="wrapper">
+          {children}
+        </div>
+      </main>
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Link}  from '../routes';
+import {Link} from '../routes';
 
 import BaseLayout from "../components/layouts/BaseLayout";
 import {IPortfolio} from "../interfaces/portfolio"
