@@ -10,7 +10,7 @@ const Index = () => {
     <BaseLayout className="cover">
       <div className="main-section">
         <div className="background-image">
-          <img src="/images/background-index.png" />
+          <img src="/images/background-index.png" alt='background'/>
         </div>
 
         <Container>
@@ -25,7 +25,7 @@ const Index = () => {
                         Have a look at my portfolio and job history.
                       </div>
                     </div>
-                    <img className="image" src="/images/section-1.png"/>
+                    <img className="image" src="/images/section-1.png" alt={'section'}/>
                     <div className="shadow-custom">
                       <div className="shadow-inner"> </div>
                     </div>
@@ -61,7 +61,7 @@ const Index = () => {
         </Container>
       </div>
     </BaseLayout>
-  )
-}
+  );
+};
 
 export default Index;

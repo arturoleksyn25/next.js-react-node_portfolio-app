@@ -19,18 +19,18 @@
     }
 
     &-link {
-      color: white;
+      color: white!important;
       font-weight: bold;
       letter-spacing: 0.8px;
       font-size: 18px;
       text-transform: uppercase;
 
       &.active {
-        color: #dba919;
+        color: #dba919!important;
       }
 
       &:hover, &:focus {
-        color: #dba919;
+        color: #dba919!important;
       }
     }
   }
