@@ -1,12 +1,13 @@
-import Header from "@/components/shared/Header";
 import {ReactNode} from "react";
+
+import Header from "components/shared/Header";
 
 type PropsType = {
   children: ReactNode,
   className?: string
 }
 
-const BaseLayout: React.FC<PropsType> = ({children, className}: PropsType) => {
+const BaseLayout = ({children, className}: PropsType) => {
   return (
     <div className="layout-container">
       <Header />

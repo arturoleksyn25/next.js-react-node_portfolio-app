@@ -1,8 +1,8 @@
 import {useRouter} from 'next/router';
 
-import BaseLayout from "@/components/layouts/BaseLayout";
-import BasePage from "@/components/BasePage";
-import {useGetPostsById} from '@/actions';
+import BaseLayout from "components/layouts/BaseLayout";
+import BasePage from "components/BasePage";
+import {useGetPostsById} from 'actions';
 
 const Portfolio = () => {
   const router = useRouter();

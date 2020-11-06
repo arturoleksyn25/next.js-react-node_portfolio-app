@@ -1,7 +1,7 @@
 import { Row, Col, Container } from 'reactstrap';
 import Typed from 'react-typed';
 
-import BaseLayout from "../components/layouts/BaseLayout";
+import BaseLayout from "components/layouts/BaseLayout";
 
 const ROLES = ['Developer', 'Tech Lover', 'Team Player', 'Coursor Creator', 'React.js']
 
