@@ -106,6 +106,18 @@ const Header = ({user, loading}: HeaderPropsType) => {
                 title={'Secret SSR'}
               />
             </NavItem>
+            <NavItem className={"port-navbar-item"}>
+              <BsNavLink
+                href={'/onlyadmin'}
+                title={'Admin'}
+              />
+            </NavItem>
+            <NavItem className={"port-navbar-item"}>
+              <BsNavLink
+                  href={'/onlyadminssr'}
+                  title={'AdminSSR'}
+              />
+            </NavItem>
           </Nav>
         </Collapse>
         <Nav navbar>

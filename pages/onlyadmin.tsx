@@ -10,18 +10,18 @@ type PropsType = {
   loading: boolean
 }
 
-const Secret = ({user, loading}: PropsType) => {
+const OnlyAdmin = ({user, loading}: PropsType) => {
   return (
     <BaseLayout
       user={user}
       loading={loading}>
       <BasePage>
         <h1>
-          I am Secret page - Hello {user.name}
+          I am Admin page - Hello {user.name}
         </h1>
       </BasePage>
     </BaseLayout>
   )
 }
 
-export default withAuth(Secret);
+export default withAuth(OnlyAdmin)('admin');

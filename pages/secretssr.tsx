@@ -37,6 +37,6 @@ export const getServerSideProps = withAuth(async () => {
   const title = await getTitle();
 
   return title;
-});
+})();
 
 export default SecretSSR;

@@ -1,6 +1,10 @@
 import { initAuth0 } from '@auth0/nextjs-auth0';
+import {IClaims} from "@auth0/nextjs-auth0/dist/session/session";
 import {IncomingMessage, ServerResponse} from "http";
 import {NextPageContext} from "next";
+import React from "react";
+
+import {IUser} from "interfaces/user";
 
 const auth0 = initAuth0({
   domain: process.env.AUTH0_DOMAIN,
@@ -16,6 +20,10 @@ const auth0 = initAuth0({
 
 export default auth0;
 
+export const isAuthorized = (user: IUser | IClaims, role: string): boolean => {
+  return !!(user && user[process.env.AUTH0_NAMESPACE + '/roles'].includes(role))
+}
+
 export const authorizeUser = async (req: IncomingMessage, res: ServerResponse) => {
   const session = await auth0.getSession(req);
 
@@ -30,10 +38,10 @@ export const authorizeUser = async (req: IncomingMessage, res: ServerResponse) =
   return session.user;
 }
 
-export const withAuth = (getData) => async ({req, res}: NextPageContext) => {
+export const withAuth = (getData: () => void) => (role?: string) => async ({req, res}: NextPageContext) => {
   const session = await auth0.getSession(req);
 
-  if (!session || !session.user) {
+  if (!session || !session.user || (role && !isAuthorized(session.user, role))) {
     res.writeHead(302, {
       Location: '/api/v1/login'
     })

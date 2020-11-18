@@ -24,4 +24,4 @@ const Secret = ({user, loading}: PropsType) => {
   )
 }
 
-export default withAuth(Secret);
+export default withAuth(Secret)();
