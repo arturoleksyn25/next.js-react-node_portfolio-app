@@ -1,14 +1,18 @@
 import Link from 'next/link';
 
+import {useGetPosts} from 'actions';
+import {useGetUser} from 'actions/user';
 import BaseLayout from "components/layouts/BaseLayout";
 import BasePage from "components/BasePage";
-import {useGetPosts} from 'actions'
 
 const Portfolios = () => {
   const {data, error, loading} = useGetPosts();
+  const {data: user, loading: loadingU} = useGetUser();
 
   return (
-    <BaseLayout>
+    <BaseLayout
+      user={user}
+      loading={loadingU}>
       <BasePage>
         <h1>
           I am Portfolio page

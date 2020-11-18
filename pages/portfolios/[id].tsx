@@ -1,16 +1,19 @@
 import {useRouter} from 'next/router';
 
+import {useGetPostsById} from 'actions';
+import {useGetUser} from 'actions/user';
 import BaseLayout from "components/layouts/BaseLayout";
 import BasePage from "components/BasePage";
-import {useGetPostsById} from 'actions';
 
 const Portfolio = () => {
   const router = useRouter();
-
   const {data: portfolio, error, loading} = useGetPostsById(router.query.id);
+  const {data, loading: loadingU} = useGetUser();
 
   return (
-    <BaseLayout>
+    <BaseLayout
+      user={data}
+      loading={loadingU}>
       <BasePage>
         {loading && (
           <p>Loading data...</p>

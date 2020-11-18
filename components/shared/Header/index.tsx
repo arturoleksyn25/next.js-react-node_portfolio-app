@@ -6,9 +6,14 @@ import {
   Nav,
   NavItem
 } from 'reactstrap';
-
 import Link from 'next/link';
 
+import {IUser} from 'interfaces/user';
+
+type HeaderPropsType = {
+  user: IUser,
+  loading: boolean,
+}
 type BsNavLinkType = {
   title: string,
   href: string
@@ -34,21 +39,17 @@ const BsNavBrand = () => {
 
 const LoginLink = () => {
   return (
-    <span className="nav-link port-navbar-link">
-      Login
-    </span>
+    <a className='nav-link port-navbar-link' href={'/api/v1/login'}>Login</a>
   )
 }
 
 const LogoutLink = () => {
   return (
-    <span className="nav-link port-navbar-link">
-      Logout
-    </span>
+    <a className='nav-link port-navbar-link' href={'/api/v1/logout'}>Logout</a>
   )
 }
 
-const Header = () => {
+const Header = ({user, loading}: HeaderPropsType) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -93,15 +94,34 @@ const Header = () => {
                 title={'Cv'}
               />
             </NavItem>
+            <NavItem className={"port-navbar-item"}>
+              <BsNavLink
+                href={'/secret'}
+                title={'Secret'}
+              />
+            </NavItem>
+            <NavItem className={"port-navbar-item"}>
+              <BsNavLink
+                href={'/secretssr'}
+                title={'Secret SSR'}
+              />
+            </NavItem>
           </Nav>
         </Collapse>
         <Nav navbar>
-          <NavItem className={"port-navbar-item clickable"}>
-            <LoginLink/>
-          </NavItem>
-          <NavItem className={"port-navbar-item clickable"}>
-            <LogoutLink/>
-          </NavItem>
+          {!loading && (
+            <>
+              {user ? (
+                <NavItem className={"port-navbar-item clickable"}>
+                  <LogoutLink/>
+                </NavItem>
+              ) : (
+                <NavItem className={"port-navbar-item clickable"}>
+                  <LoginLink/>
+                </NavItem>
+              )}
+            </>
+          )}
         </Nav>
       </Navbar>
     </div>
