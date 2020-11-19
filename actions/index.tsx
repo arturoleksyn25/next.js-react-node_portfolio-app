@@ -1,4 +1,3 @@
-import useSWR from 'swr';
 
 export const fetcher = (url: string) =>
   fetch(url).then(async res => {
@@ -11,14 +10,3 @@ export const fetcher = (url: string) =>
     }
   });
 
-export const useGetPosts = () => {
-  const {data, error, ...rest} = useSWR('/api/v1/posts', fetcher);
-
-  return {data, error, loading: !data && !error, ...rest};
-}
-
-export const useGetPostsById = (id: string|string[]) => {
-  const {data, error, ...rest} = useSWR(id ? `/api/v1/posts/${id}` : null, fetcher);
-
-  return {data, error, loading: !data && !error, ...rest};
-}

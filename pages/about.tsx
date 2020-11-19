@@ -4,7 +4,7 @@ import BasePage from "components/BasePage";
 
 const About = () => {
   const {data, loading} = useGetUser();
-  debugger;
+
   return (
     <BaseLayout
       user={data}

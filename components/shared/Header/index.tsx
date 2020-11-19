@@ -13,6 +13,7 @@ import {IUser} from 'interfaces/user';
 type HeaderPropsType = {
   user: IUser,
   loading: boolean,
+  className: string
 }
 type BsNavLinkType = {
   title: string,
@@ -49,15 +50,14 @@ const LogoutLink = () => {
   )
 }
 
-const Header = ({user, loading}: HeaderPropsType) => {
+const Header = ({user, loading, className}: HeaderPropsType) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
       <Navbar
-        className={'port-navbar port-default absolute'}
-        color="transparent"
+        className={`port-navbar port-default absolute ${className}`}
         dark
         expand="md">
         <BsNavBrand/>
@@ -94,30 +94,30 @@ const Header = ({user, loading}: HeaderPropsType) => {
                 title={'Cv'}
               />
             </NavItem>
-            <NavItem className={"port-navbar-item"}>
-              <BsNavLink
-                href={'/secret'}
-                title={'Secret'}
-              />
-            </NavItem>
-            <NavItem className={"port-navbar-item"}>
-              <BsNavLink
-                href={'/secretssr'}
-                title={'Secret SSR'}
-              />
-            </NavItem>
-            <NavItem className={"port-navbar-item"}>
-              <BsNavLink
-                href={'/onlyadmin'}
-                title={'Admin'}
-              />
-            </NavItem>
-            <NavItem className={"port-navbar-item"}>
-              <BsNavLink
-                  href={'/onlyadminssr'}
-                  title={'AdminSSR'}
-              />
-            </NavItem>
+            {/*<NavItem className={"port-navbar-item"}>*/}
+            {/*  <BsNavLink*/}
+            {/*    href={'/secret'}*/}
+            {/*    title={'Secret'}*/}
+            {/*  />*/}
+            {/*</NavItem>*/}
+            {/*<NavItem className={"port-navbar-item"}>*/}
+            {/*  <BsNavLink*/}
+            {/*    href={'/secretssr'}*/}
+            {/*    title={'Secret SSR'}*/}
+            {/*  />*/}
+            {/*</NavItem>*/}
+            {/*<NavItem className={"port-navbar-item"}>*/}
+            {/*  <BsNavLink*/}
+            {/*    href={'/onlyadmin'}*/}
+            {/*    title={'Admin'}*/}
+            {/*  />*/}
+            {/*</NavItem>*/}
+            {/*<NavItem className={"port-navbar-item"}>*/}
+            {/*  <BsNavLink*/}
+            {/*      href={'/onlyadminssr'}*/}
+            {/*      title={'AdminSSR'}*/}
+            {/*  />*/}
+            {/*</NavItem>*/}
           </Nav>
         </Collapse>
         <Nav navbar>

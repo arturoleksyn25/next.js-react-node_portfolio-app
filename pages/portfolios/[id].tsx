@@ -1,37 +1,56 @@
-import {useRouter} from 'next/router';
-
-import {useGetPostsById} from 'actions';
 import {useGetUser} from 'actions/user';
 import BaseLayout from "components/layouts/BaseLayout";
 import BasePage from "components/BasePage";
+import PortfoliosApi from "lib/api/portfolios";
+import {IPortfolio} from "interfaces/portfolio";
 
-const Portfolio = () => {
-  const router = useRouter();
-  const {data: portfolio, error, loading} = useGetPostsById(router.query.id);
+type PropsType = {
+  portfolio: IPortfolio
+}
+
+const Portfolio = ({portfolio}: PropsType) => {
   const {data, loading: loadingU} = useGetUser();
 
   return (
     <BaseLayout
       user={data}
       loading={loadingU}>
-      <BasePage>
-        {loading && (
-          <p>Loading data...</p>
-        )}
-        {error && (
-          <div className={'alert alert-danger'}>{error.message}</div>
-        )}
-        {portfolio && (
-          <>
-            <h1>I am Portfolio page</h1>
-            <h1>{portfolio.title}</h1>
-            <p>BODY {portfolio.body}</p>
-            <p>ID {portfolio.id}</p>
-          </>
-        )}
+      <BasePage header={"Portfolio Detail"}>
+        {JSON.stringify(portfolio)}
       </BasePage>
     </BaseLayout>
   )
+}
+
+// export async function getServerSideProps({query}: NextPageContext) {
+//   const json = await new PortfoliosApi().getById(query.id);
+//   const portfolio = json.data;
+//
+//   return {
+//     props: {portfolio}
+//   }
+// }
+
+export async function getStaticPaths() {
+  const json = await new PortfoliosApi().getAll();
+  const portfolios = json.data;
+
+  const paths = portfolios.map(portfolio => {
+    return {
+      params: {id: portfolio._id}
+    }
+  })
+
+  return {paths, fallback: false}
+}
+
+export async function getStaticProps({params}) {
+  const json = await new PortfoliosApi().getById(params.id);
+  const portfolio = json.data;
+
+  return {
+    props: {portfolio}
+  }
 }
 
 export default Portfolio;
